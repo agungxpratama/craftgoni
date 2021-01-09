@@ -55,6 +55,15 @@ class M_All extends CI_Model{
         return $this->db->get_where($table,$where);
     }
 
+    public function join_cart_bar()
+    {
+        $this->db->select('*');
+        $this->db->from('cart');
+        $this->db->join('barang', 'cart.id_barang = barang.id_barang');
+        // $this->db->join('user', 'cart.id_user = user.id_user');
+        return $this->db->get();
+    }
+
     function join_cart($from, $at)
     {
         $this->db->select('*');

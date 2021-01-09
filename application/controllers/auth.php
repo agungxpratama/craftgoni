@@ -37,15 +37,17 @@ class Auth extends CI_Controller {
                     'status' => 'login',
                     'role' => $data_user->role,
                     'email' => $data_user->email,
+                    'foto' => $data_user->foto,
                 );
                 $this->session->set_userdata($data_session);
-                redirect(base_url('index.php/'));
+                redirect(base_url('index.php/home'));
             }else{
                 $data_session = array(
                     'nama' => $data_user->nama_user,
                     'status' => 'login',
                     'role' => $data_user->role,
                     'email' => $data_user->email,
+                    'foto' => $data_user->foto,
                 );
                 $this->session->set_userdata($data_session);
                 redirect(base_url('index.php/admin'));
@@ -90,6 +92,7 @@ class Auth extends CI_Controller {
                 'role' => 'customer',
                 'email' => $email,
                 'password' => $password,
+                'foto' => 'img/default.png',
             );
             $this->M_All->insert('user', $data);
             redirect('auth');

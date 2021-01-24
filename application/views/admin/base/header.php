@@ -86,6 +86,22 @@
         </div>
       </li>
 
+      <!-- Nav Item - Utilities Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilitie" aria-expanded="true" aria-controls="collapseUtilities">
+          <i class="fas fa-fw fa-archive"></i>
+          <span>Transaksi</span>
+        </a>
+        <div id="collapseUtilitie" class="collapse" aria-labelledby="headingUtilitie" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Opsi :</h6>
+            <a class="collapse-item" href="<?= base_url('index.php/admin/pemesanan');?>">Pemesanan</a>
+            <!-- <a class="collapse-item" href="utilities-border.html">List</a> -->
+            <a class="collapse-item" href="utilities-other.html">Other</a>
+          </div>
+        </div>
+      </li>
+
       <!-- Divider -->
       <hr class="sidebar-divider">
 

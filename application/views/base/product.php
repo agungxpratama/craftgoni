@@ -269,11 +269,18 @@
                         Rp.<?= $barang->harga_barang?>
                     </div><!-- End .product-price -->
                     <div class="product-details-quantity">
-                        <input type="number" id="sticky-cart-qty" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
+                        <form action="<?= base_url('index.php/home/add_cart_prod/').$barang->id_barang?>" method="post" id="cart">
+                            <input type="number" id="sticky-cart-qty" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required name="jumlah">
+                        </form>
                     </div><!-- End .product-details-quantity -->
 
                     <div class="product-details-action">
-                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                        <a href="#" class="btn-product btn-cart" id="add_cart" onclick="button_cart()"><span>add to cart</span></a>
+                        <script>
+                            function button_cart() {
+                            document.getElementById("cart").submit();
+                            }
+                        </script>
                         <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Add to Wishlist</span></a>
                     </div><!-- End .product-details-action -->
                 </div><!-- End .col-6 -->

@@ -55,6 +55,16 @@ class M_All extends CI_Model{
         return $this->db->get_where($table,$where);
     }
 
+    public function join_invoice_bar($where)
+    {
+        $this->db->select('*');
+        $this->db->from('db_cart');
+        $this->db->join('barang', 'db_cart.id_barang = barang.id_barang');
+        // $this->db->join('user', 'cart.id_user = user.id_user');
+        $this->db->where($where);
+        return $this->db->get();
+    }
+
     public function join_cart_bar()
     {
         $this->db->select('*');
@@ -117,6 +127,16 @@ class M_All extends CI_Model{
         $query = $this->db->get($table);
 
         return $query;
+    }
+
+    public function join_pemesanan()
+    {
+        $this->db->select('*');
+        $this->db->from('invoice');
+        $this->db->join('checkout', 'invoice.id_checkout = checkout.id_checkout');
+        $this->db->join('address', 'invoice.id_user = address.id_user');
+        // $this->db->where($where);
+        return $this->db->get();
     }
 
     public function join_favorite($at, $where)

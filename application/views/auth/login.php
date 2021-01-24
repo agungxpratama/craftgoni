@@ -144,14 +144,24 @@
                                     }
                                 ?>
 							    	<form action="<?= base_url('index.php/auth/action_register');?>" method="post">
-							    		<div class="form-group">
+                                        <div class="form-group">
+							    			<label for="singin-email-2">Full Name *</label>
+							    			<input type="text" class="form-control" id="singin-email-2" name="full_name" required>
+                                        </div><!-- End .form-group -->
+                                        
+                                        <div class="form-group">
 							    			<label for="register-email-2">Your email address *</label>
-							    			<input type="email" class="form-control" id="register-email-2" name="register-email" required>
-							    		</div><!-- End .form-group -->
-
+							    			<input type="email" class="form-control" id="register-email-2" name="register_email" required>
+                                        </div><!-- End .form-group -->
+                                        
+                                        <div class="form-group">
+							    			<label for="singin-email-2">Username *</label>
+							    			<input type="text" class="form-control" id="singin-email-2" name="username" required>
+                                        </div><!-- End .form-group -->
+                                        
 							    		<div class="form-group">
 							    			<label for="register-password-2">Password *</label>
-							    			<input type="password" class="form-control" id="register-password-2" name="register-password" required>
+							    			<input type="password" class="form-control" id="register-password-2" name="register_password" required>
 							    		</div><!-- End .form-group -->
 
 							    		<div class="form-footer">

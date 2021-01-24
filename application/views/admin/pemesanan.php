@@ -15,7 +15,7 @@
     	<?php endif; ?>
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Barang</h1>
+        <h1 class="h3 mb-0 text-gray-800">Pemesanan</h1>
         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" type="button" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus fa-sm text-white-50"></i> Tambah</a>
     </div>
 
@@ -76,7 +76,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Tabel Data Barang</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Tabel Data Pemesanan</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -84,12 +84,13 @@
                     <thead>
                     <tr>
                         <th>No.</th>
-                        <th>Nama Barang</th>
-                        <th>Gambar</th>
-                        <th>Detail Barang</th>
-                        <th>Kategori</th>
-                        <th>Jenis Barang</th>
-                        <th>Harga Barang</th>
+                        <th>Nama</th>
+                        <th>Jenis Pembayaran</th>
+                        <th>Status</th>
+                        <th>Jumlah Item</th>
+                        <th>Tanggal</th>
+                        <th>Total Pembayaran</th>
+                        <th>Metode Pengiriman</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -108,20 +109,99 @@
                     <tbody>
                     <?php 
                     $no = 0;
-                    foreach ($barang as $b): 
+                    foreach ($invoice as $i): 
                         $no++;
                     ?>
                         <tr>
                             <th><?= $no;?></th>
-                            <th><?= $b->nama_barang;?></th>
-                            <th><img src="<?= base_url('assets_admin/'.$b->gambar); ?>" width="100" height="100"></th>
-                            <th><?= $b->detail_barang;?></th>
-                            <th><?= $b->kategori;?></th>
-                            <th><?= $b->jenis_barang;?></th>
-                            <th><?= $b->harga_barang;?></th>
+                            <th><?= $i->nama_depan;?> <?= $i->nama_belakang;?></th>
+                            <th><?= $i->id_shipping?></th>
+                            <th><?= $i->status?>
+                            <?php if ($i->status == 1): ?>
+                                    <div class="badge badge-primary">
+                                        Belum dibayar
+                                    </div>
+                                    -
+                                    <div class="badge badge-secondary">
+                                        Telah Dibayar
+                                    </div>
+                                    <div class="badge badge-secondary">
+                                        Belum Dikirim
+                                    </div>
+                                    -
+                                    <div class="badge badge-secondary">
+                                        Telah Dikirm
+                                    </div>
+                                    -
+                                    <div class="badge badge-secondary">
+                                        Selesai
+                                    </div>
+                                <?php elseif ($i->status == 2): ?>
+                                    <div class="badge badge-secondary">
+                                        Belum dibayar
+                                    </div>
+                                    -
+                                    <div class="badge badge-primary">
+                                        Telah Dibayar
+                                    </div>
+                                    <div class="badge badge-warning">
+                                        Belum Dikirim
+                                    </div>
+                                    -
+                                    <div class="badge badge-secondary">
+                                        Telah Dikirm
+                                    </div>
+                                    -
+                                    <div class="badge badge-secondary">
+                                        Selesai
+                                    </div>
+                                <?php elseif ($i->status == 3): ?>
+                                    <div class="badge badge-secondary">
+                                        Belum dibayar
+                                    </div>
+                                    -
+                                    <div class="badge badge-secondary">
+                                        Telah Dibayar
+                                    </div>
+                                    <div class="badge badge-secondary">
+                                        Belum Dikirim
+                                    </div>
+                                    -
+                                    <div class="badge badge-primary">
+                                        Telah Dikirm
+                                    </div>
+                                    -
+                                    <div class="badge badge-secondary">
+                                        Selesai
+                                    </div>
+                                <?php elseif ($i->status == 4): ?>
+                                    <div class="badge badge-secondary">
+                                        Belum dibayar
+                                    </div>
+                                    -
+                                    <div class="badge badge-secondary">
+                                        Telah Dibayar
+                                    </div>
+                                    <div class="badge badge-secondary">
+                                        Belum Dikirim
+                                    </div>
+                                    -
+                                    <div class="badge badge-secondary">
+                                        Telah Dikirm
+                                    </div>
+                                    -
+                                    <div class="badge badge-success">
+                                        Selesai
+                                    </div>
+                                <?php endif; ?>
+                            </th>
+                            <th><?= $i->jumlah_item;?></th>
+                            <th><?= $i->tanggal;?></th>
+                            <th><?= $i->total_bayar;?></th>
+                            <th><?= $i->jenis_pembayaran;?></th>
                             <td>
-                                <a href="<?= base_url('index.php/admin/view_barang/');?><?= $b->id_barang;?>" class="btn btn-warning"><i class="fas fa-fw fa-search"></i> Cek</a>
-                                <a href="<?= base_url('index.php/admin/hapus_barang/');?><?= $b->id_barang;?>" class="btn btn-danger"><i class="fas fa-fw fa-trash"></i> Hapus</a>
+                                <a href="<?= base_url('index.php/admin/view_barang/');?><?= $i->id_invoce;?>" class="btn btn-warning"><i class="fas fa-fw fa-search"></i> Cek</a>
+                                <a href="<?= base_url('index.php/admin/hapus_barang/');?><?= $i->id_invoce;?>" class="btn btn-danger"><i class="fas fa-fw fa-trash"></i> Hapus</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

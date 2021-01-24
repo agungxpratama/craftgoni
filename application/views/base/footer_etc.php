@@ -264,7 +264,7 @@
                         </ul>
                         <div class="tab-content" id="tab-content-5">
                             <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
-                                <form action="#">
+                                <form action="<?= base_url('index.php/auth/action_login');?>" method="post">
                                     <div class="form-group">
                                         <label for="singin-email">Username or email address *</label>
                                         <input type="text" class="form-control" id="singin-email" name="singin-email" required>
@@ -308,7 +308,7 @@
                                 </div><!-- End .form-choice -->
                             </div><!-- .End .tab-pane -->
                             <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
-                                <form action="#">
+                                <form action="<?= base_url('index.php/auth/action_register');?>" method="post">
                                     <div class="form-group">
                                         <label for="register-email">Your email address *</label>
                                         <input type="email" class="form-control" id="register-email" name="register-email" required>

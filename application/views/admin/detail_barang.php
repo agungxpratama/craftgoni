@@ -96,11 +96,11 @@
                     </div>
                     <hr>
                     <h5 class="font-weight-bold">Harga</h5>
-                    <p class="text"><?= $b->harga_barang; ?></p>
+                    <p class="text">Rp. <?= $b->harga_barang; ?></p>
                 </div>
                 <div class="col-3">
-                    <img class="w-100" src="<?= base_url('assets_admin/img/gambar/'.$b->gambar); ?>" alt="img-fotoBarang">
-                    <button class="btn btn-info w-100" type="button" name="button" data-toggle="modal" data-target="#stockModal">+ Stock (<?= $b->harga_barang ?>)</button>
+                    <img class="w-100" src="<?= base_url('assets_admin/'.$b->gambar); ?>" alt="img-fotoBarang">
+                    <button class="btn btn-info w-100" type="button" name="button" data-toggle="modal" data-target="#stockModal">+ Stock</button>
                     <div class="modal fade" tabindex="-1" role="dialog" id="stockModal">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">

@@ -33,6 +33,7 @@ class Auth extends CI_Controller {
             $data_user = $this->M_All->view_where('user', $where_user)->row();
             if ($data_user->role != 'admin') {
                 $data_session = array(
+                    'id_user' => $data_user->id_user,
                     'nama' => $data_user->nama_user,
                     'status' => 'login',
                     'role' => $data_user->role,
@@ -43,6 +44,7 @@ class Auth extends CI_Controller {
                 redirect(base_url('index.php/home'));
             }else{
                 $data_session = array(
+                    'id_user' => $data_user->id_user,
                     'nama' => $data_user->nama_user,
                     'status' => 'login',
                     'role' => $data_user->role,
@@ -70,8 +72,8 @@ class Auth extends CI_Controller {
     {
         $nama = $this->input->post('full_name');
         $username = $this->input->post('username');
-        $email = $this->input->post('email');
-        $password = $this->input->post('password');
+        $email = $this->input->post('register_email');
+        $password = $this->input->post('register_password');
         
         $where = array(
             'username' => $username,

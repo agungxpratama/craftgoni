@@ -74,7 +74,7 @@
                                             <?php
                                         }else{
                                             ?>
-                                            <li><a href="<?= base_url('index.php/auth/logout')?>" class="btn btn-danger"><i class="icon-user"></i>Logout</a></li>
+                                            <li class="text-white"><a href="<?= base_url('index.php/auth/logout')?>" class="btn btn-danger"><i class="icon-user"></i>Logout</a></li>
                                         <?php
                                         }
                                     ?>

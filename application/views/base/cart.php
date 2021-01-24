@@ -17,6 +17,15 @@
             <div class="page-content">
             	<div class="cart">
 	                <div class="container">
+                        <?php
+                                    if ($this->session->flashdata('flash_message')) {
+                                    ?>
+                                    <div class="alert alert-<?= $this->session->flashdata('type'); ?>" role="alert">
+                                        <?= $this->session->flashdata('flash_message'); ?>silahkan cek <a href="<?= base_url('index.php/home/checkout/')?>" class="text-white btn btn-success">pesanan anda</a>
+                                    </div>
+                                    <?php
+                                    }
+                                ?>
 	                	<div class="row">
 	                		<div class="col-lg-9">
 	                			<table class="table table-cart table-mobile">
@@ -57,7 +66,7 @@
                                                 </div><!-- End .cart-product-quantity -->
                                             </td>
 											<td class="total-col">Rp.<?=$total?></td>
-											<td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
+											<td class="remove-col"><button class="btn-remove"><a href="<?= base_url('index.php/home/del_item_cart/').$c->id_cart?>"><i class="icon-close"></i></a></button></td>
                                         </tr>
                                         <?php
 
@@ -85,61 +94,68 @@
 	                		<aside class="col-lg-3">
 	                			<div class="summary summary-cart">
 	                				<h3 class="summary-title">Cart Total</h3><!-- End .summary-title -->
-
-	                				<table class="table table-summary">
-	                					<tbody>
-	                						<tr class="summary-subtotal">
-	                							<td>Subtotal:</td>
-	                							<td>Rp.<?= $total_harga?></td>
-	                						</tr><!-- End .summary-subtotal -->
-	                						<tr class="summary-shipping">
-	                							<td>Shipping:</td>
-	                							<td>&nbsp;</td>
-	                						</tr>
-
-	                						<tr class="summary-shipping-row">
-	                							<td>
-													<div class="custom-control custom-radio">
-														<input type="radio" id="free-shipping" name="shipping" class="custom-control-input">
-														<label class="custom-control-label" for="free-shipping">Free Shipping</label>
-													</div><!-- End .custom-control -->
-	                							</td>
-	                							<td>$0.00</td>
-	                						</tr><!-- End .summary-shipping-row -->
-
-	                						<tr class="summary-shipping-row">
-	                							<td>
-	                								<div class="custom-control custom-radio">
-														<input type="radio" id="standart-shipping" name="shipping" class="custom-control-input">
-														<label class="custom-control-label" for="standart-shipping">Standart:</label>
-													</div><!-- End .custom-control -->
-	                							</td>
-	                							<td>$10.00</td>
-	                						</tr><!-- End .summary-shipping-row -->
-
-	                						<tr class="summary-shipping-row">
-	                							<td>
-	                								<div class="custom-control custom-radio">
-														<input type="radio" id="express-shipping" name="shipping" class="custom-control-input">
-														<label class="custom-control-label" for="express-shipping">Express:</label>
-													</div><!-- End .custom-control -->
-	                							</td>
-	                							<td>$20.00</td>
-	                						</tr><!-- End .summary-shipping-row -->
-
-	                						<!-- <tr class="summary-shipping-estimate">
-	                							<td>Estimate for Your Country<br> <a href="dashboard.html">Change address</a></td>
-	                							<td>&nbsp;</td> -->
-	                						<!-- </tr>End .summary-shipping-estimate -->
-
-	                						<tr class="summary-total">
-	                							<td>Total:</td>
-	                							<td>$160.00</td>
-	                						</tr><!-- End .summary-total -->
-	                					</tbody>
-	                				</table><!-- End .table table-summary -->
-
-	                				<a href="checkout.html" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
+                                        <form id="checkout_form" action="<?= base_url('index.php/home/action_cart'); ?>" method="post">
+                                            <table class="table table-summary">
+                                                <tbody>
+                                                    <tr class="summary-subtotal">
+                                                        <td>Subtotal:</td>
+                                                        <td>Rp.<?= $total_harga?></td>
+                                                    </tr><!-- End .summary-subtotal -->
+                                                    <tr class="summary-shipping">
+                                                        <td>Shipping:</td>
+                                                        <td>&nbsp;</td>
+                                                    </tr>
+    
+                                                    <tr class="summary-shipping-row">
+                                                        <td>
+                                                            <div class="custom-control custom-radio">
+                                                                <input type="radio" id="free-shipping" name="shipping" value="1" class="custom-control-input" required>
+                                                                <label class="custom-control-label" for="free-shipping">Free Shipping</label>
+                                                            </div><!-- End .custom-control -->
+                                                        </td>
+                                                        <td>Rp. 0</td>
+                                                    </tr><!-- End .summary-shipping-row -->
+    
+                                                    <tr class="summary-shipping-row">
+                                                        <td>
+                                                            <div class="custom-control custom-radio">
+                                                                <input type="radio" id="standart-shipping" name="shipping" value="2" class="custom-control-input" required>
+                                                                <label class="custom-control-label" for="standart-shipping">Standart:</label>
+                                                            </div><!-- End .custom-control -->
+                                                        </td>
+                                                        <td>Rp. 10000</td>
+                                                    </tr><!-- End .summary-shipping-row -->
+    
+                                                    <tr class="summary-shipping-row">
+                                                        <td>
+                                                            <div class="custom-control custom-radio">
+                                                                <input type="radio" id="express-shipping" name="shipping" value="3" class="custom-control-input" required>
+                                                                <label class="custom-control-label" for="express-shipping">Express:</label>
+                                                            </div><!-- End .custom-control -->
+                                                        </td>
+                                                        <td>Rp. 25000</td>
+                                                    </tr><!-- End .summary-shipping-row -->
+    
+                                                    <!-- <tr class="summary-shipping-estimate">
+                                                        <td>Estimate for Your Country<br> <a href="dashboard.html">Change address</a></td>
+                                                        <td>&nbsp;</td> -->
+                                                    <!-- </tr>End .summary-shipping-estimate -->
+    
+                                                    <tr class="summary-total">
+                                                        <td>Total:</td>
+                                                        <td>Rp.<?= $total_harga?></td>
+                                                        <input type="hidden" name="total_harga" value="<?= $total_harga?>">
+                                                    </tr><!-- End .summary-total -->
+                                                </tbody>
+                                            </table><!-- End .table table-summary -->
+                                            <!-- <input type="submit"> -->
+                                        </form>
+                                        <script>
+                                        function checkout() {
+                                        document.getElementById("checkout_form").submit();
+                                        }
+                                        </script>
+	                				<button href="#" class="btn btn-outline-primary-2 btn-order btn-block" onclick="checkout()">PROCEED TO CHECKOUT</button>
 	                			</div><!-- End .summary -->
 
 		            			<a href="<?= base_url('index.php/home/shop'); ?>" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE SHOPPING</span><i class="icon-refresh"></i></a>

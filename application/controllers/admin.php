@@ -97,4 +97,12 @@ class admin extends CI_Controller {
         $this->load->view('admin/data_user', $data);
         $this->footer();
     }
+
+    public function pemesanan()
+    {
+        $data['invoice'] = $this->M_All->join_pemesanan()->result();
+        $this->header();
+        $this->load->view('admin/pemesanan', $data);
+        $this->footer();
+    }
 }

@@ -56,11 +56,11 @@
                           <select class="form-control custom-select bg-light small" name="kategori">
                             <option selected>Pilih Kategori Barang</option>
                             <?php
-                            //foreach ($sumber as $s) {
+                            foreach ($kategori as $k) {
                                 // code...
                             ?>
-                            <option value="<?= '1'//$s->id_sumber; ?>"><?= 'data'//$s->nama_sumber ?></option>
-                            <?php //} ?>
+                            <option value="<?= $k->id_kategori; ?>"><?= $k->nama_kategori ?></option>
+                            <?php } ?>
                           </select>
                       </div>
                 </div>

@@ -35,7 +35,7 @@
 
 	            						<label>Street address *</label>
 	            						<input type="text" class="form-control" placeholder="House number and Street name" name="alamat_jalan" value="<?= $address->alamat_jalan ?? ''?>" required>
-	            						<input type="text" class="form-control" placeholder="Appartments, suite, unit etc ..." name="alamat_jalan_tam" required>
+	            						<!-- <input type="text" class="form-control" placeholder="Appartments, suite, unit etc ..." name="alamat_jalan_tam" required> -->
 
 	            						<div class="row">
 		                					<div class="col-sm-6">
@@ -150,7 +150,7 @@
 														</input>
 										            </h2>
 										        </div><!-- End .card-header -->
-										        <div id="collapse-1" class="collapse show" aria-labelledby="heading-1" data-parent="#accordion-payment">
+										        <div id="collapse-1" class="collapse" aria-labelledby="heading-1" data-parent="#accordion-payment">
 										            <div class="card-body">
 										                Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.
 										            </div><!-- End .card-body -->
@@ -167,7 +167,8 @@
 										            </h2>
 										        </div><!-- End .card-header -->
 										        <div id="collapse-3" class="collapse" aria-labelledby="heading-3" data-parent="#accordion-payment">
-										            <div class="card-body">Quisque volutpat mattis eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. 
+										            <div class="card-body">
+														Pembayaran saat barang telah sampai. 
 										            </div><!-- End .card-body -->
 										        </div><!-- End .collapse -->
 										    </div><!-- End .card -->

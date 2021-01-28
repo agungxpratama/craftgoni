@@ -202,6 +202,7 @@ class home extends CI_Controller {
 		);
 		$data['checkout'] = array(
 			'status' => 1,
+			'nomor_pembayaran' => time(),
 			'notes' => $this->input->post('notes')
 		);
 		$data['invoice'] = array(
@@ -257,7 +258,7 @@ class home extends CI_Controller {
 		$data['checkout'] = $this->M_All->view_where('checkout', $where)->last_row();
 		$where_barang = array('id_checkout' => $data['invoice']->id_checkout);
 		$data['barang'] = $this->M_All->join_invoice_bar($where_barang)->result();
-		print_r($data['invoice']);
+		// print_r($data['invoice']);
 		$this->auth();
 		$this->header();
 		$data['cart'] = $this->M_All->join_cart_bar()->result();

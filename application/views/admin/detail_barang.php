@@ -86,8 +86,10 @@
                             <p class="text">Rp. <?= $b->harga_barang; ?></p>
                         </div>
                         <div class="col-4 border-left">
-                            <h5 class="font-weight-bold">Kategori</h5>
-                            <p class="text"><?= $b->kategori; ?></p>
+                            <h5 class="font-weight-bold">Stok</h5>
+                            <p class="text"><?= $b->stok; ?></p>
+                            <h5 class="font-weight-bold">Stok Terjual</h5>
+                            <p class="text"><?= $b->stok_terjual; ?></p>
                         </div>
                         <div class="col-4 border-left">
                             <h5 class="font-weight-bold">Detail Barang</h5>
@@ -104,7 +106,7 @@
                     <div class="modal fade" tabindex="-1" role="dialog" id="stockModal">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
-                              <form action="<?= base_url()?>index.php/admin/updateStock/<?= $b->id_barang?>" method="post">
+                              <form action="<?= base_url()?>index.php/admin/update_stock/<?= $b->id_barang?>" method="post">
                                   <div class="modal-header">
                                       <h5 class="modal-title">Tambah Stok Barang</h5>
                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -114,7 +116,7 @@
                                   <div class="modal-body">
                                       <div class="form-group">
                                           <label for="exampleFormControlInput1">Stock Barang</label>
-                                          <input type="number" class="form-control bg-light border-1 small" name="stock" value="<?= $b->stock ?>" placeholder="Jumlah...">
+                                          <input type="number" class="form-control bg-light border-1 small" name="stok" value="<?= $b->stok ?>" placeholder="Jumlah...">
                                       </div>
                                   </div>
                                   <div class="modal-footer">

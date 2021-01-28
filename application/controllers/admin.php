@@ -27,9 +27,18 @@ class admin extends CI_Controller {
         $this->load->view('admin/dashboard');
         $this->footer();
     }
+
+    public function update_stock($id)
+    {
+        $where = ['id_barang' => $id];
+        $data = ['stok' => $this->input->post('stok'),];
+        $this->M_All->update('barang', $where, $data);
+		redirect('admin/view_barang/'.$id);
+    }
     
     public function barang()
     {
+        $data['kategori'] = $this->M_All->get('kategori')->result();
         $data['barang'] = $this->M_All->get('barang')->result();
         $this->header();
         $this->load->view('admin/barang', $data);
@@ -87,6 +96,27 @@ class admin extends CI_Controller {
 		$this->M_All->delete($where,'barang');
 		redirect('admin/barang');
     }
+
+    public function kategori()
+    {
+        $data['kategori'] = $this->M_All->get('kategori')->result();
+        $this->header();
+        $this->load->view('admin/kategori', $data);
+        $this->footer();
+    }
+
+    public function tambah_kategori()
+    {
+        $data = [
+            'nama_kategori' => $this->input->post('nama_kategori'),
+            'keterangan' => $this->input->post('keterangan'),
+        ];
+        if ($this->M_All->insert('kategori', $data) != true) {
+            redirect('admin/kategori');
+        }else {
+            redirect('admin/kategori');
+        }
+    }
     
     public function data_user(){
         $where = array('role' => 'customer');
@@ -103,6 +133,27 @@ class admin extends CI_Controller {
         $data['invoice'] = $this->M_All->join_pemesanan()->result();
         $this->header();
         $this->load->view('admin/pemesanan', $data);
+        $this->footer();
+    }
+
+    public function view_pemesanan($id)
+    {
+        $where = ['invoice.id_invoice' => $id];
+        $data['invoice'] = $this->M_All->join_where_pemesanan($where)->row();
+        // var_dump($data);
+        print_r($data);
+        $this->header();
+        $this->load->view('admin/view_pemesanan', $data);
+        $this->footer();
+    }
+
+    public function list_akun()
+    {
+        $where = ['role' => 'customer'];
+        $data['user'] = $this->M_All->view_where('user', $where)->result();
+        print_r($data);
+        $this->header();
+        $this->load->view('admin/list_user', $data);
         $this->footer();
     }
 }

@@ -139,6 +139,16 @@ class M_All extends CI_Model{
         return $this->db->get();
     }
 
+    public function join_where_pemesanan($where)
+    {
+        $this->db->select('*');
+        $this->db->from('invoice');
+        $this->db->join('checkout', 'invoice.id_checkout = checkout.id_checkout');
+        $this->db->join('address', 'invoice.id_user = address.id_user');
+        $this->db->where($where);
+        return $this->db->get();
+    }
+
     public function join_favorite($at, $where)
     {
         $this->db->select('*');

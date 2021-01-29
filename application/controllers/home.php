@@ -46,6 +46,7 @@ class home extends CI_Controller {
 		// print_r($this->cart->contents());
 		$data['cart'] = $this->M_All->join_cart_bar()->result();
 		$data['count_cart'] = $this->M_All->count('cart');
+		$data['kategori'] = $this->M_All->get('kategori')->result();
 		if (current_url() != base_url('index.php/home') && current_url() != base_url('index.php')) {
 			$this->load->view('base/header_etc', $data);
 		}else {
@@ -267,6 +268,25 @@ class home extends CI_Controller {
 
 		// );
 		$this->load->view('base/invoice', $data);
+		$this->footer();
+	}
+
+	public function lihat_kategori($id)
+	{
+		$where = ['id_kategori' => $id];
+		$data['barang'] = $this->M_All->view_where('barang', $where)->result();
+		$this->header();
+		$this->load->view('base/shop', $data);
+		$this->footer();
+	}
+
+	public function pesanan()
+	{
+		$where = ['id_user' => $this->session->userdata('id_user')];
+		$data['pesanan'] = $this->M_All->view_where('invoice', $where)->result();
+		$this->auth();
+		$this->header();
+		$this->load->view('base/pesanan', $data);
 		$this->footer();
 	}
 }

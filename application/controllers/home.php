@@ -289,4 +289,9 @@ class home extends CI_Controller {
 		$this->load->view('base/pesanan', $data);
 		$this->footer();
 	}
+
+	public function lihat_pesanan($id)
+	{
+		# code...
+	}
 }

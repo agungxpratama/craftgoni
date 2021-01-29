@@ -167,6 +167,11 @@ class M_All extends CI_Model{
         return $this->db->get();
     }
 
+    public function FunctionName()
+    {
+        # code...
+    }
+
     public function join_buy_again($where)
     {
         $this->db->select('*');

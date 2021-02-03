@@ -21,7 +21,7 @@
 							<tr>
 								<th>Product</th>
 								<th>Price</th>
-								<th>Stock Status</th>
+								<th>Status</th>
 								<th></th>
 								<th></th>
 							</tr>
@@ -47,9 +47,19 @@
 									</div><!-- End .product -->
 								</td>
 								<td class="price-col">Rp. <?= $p->total_bayar?></td>
-								<td class="stock-col"><span class="in-stock">In stock</span></td>
+								<td class="stock-col"><span class="in-stock">
+									<?php
+										if ($p->status == 0) {
+											echo "Error";
+										}elseif ($p->status == 1) {
+											echo "Dipesan";
+										}elseif ($p->status == 2) {
+											echo "Dibayar";
+										}
+									?>
+								</span></td>
 								<td class="action-col">
-									<button class="btn btn-block btn-outline-primary-2"><i class="icon-search"></i>Cek</button>
+									<a href="<?= base_url('index.php/home/lihat_pesanan/'.$p->id_invoice)?>" class="btn btn-block btn-outline-primary-2"><i class="icon-search"></i>Cek</a>
 								</td>
 								<td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
 							</tr>

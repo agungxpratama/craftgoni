@@ -116,7 +116,7 @@
                             <th><?= $no;?></th>
                             <th><?= $i->nama_depan;?> <?= $i->nama_belakang;?></th>
                             <th><?= $i->id_shipping?></th>
-                            <th><?= $i->status?>
+                            <th>
                             <?php if ($i->status == 1): ?>
                                     <div class="badge badge-primary">
                                         Belum dibayar
@@ -200,7 +200,7 @@
                             <th><?= $i->total_bayar;?></th>
                             <th><?= $i->jenis_pembayaran;?></th>
                             <td>
-                                <a href="<?= base_url('index.php/admin/view_pemesanan/');?><?= $i->id_invoce;?>" class="btn btn-warning"><i class="fas fa-fw fa-search"></i> Cek</a>
+                                <a href="<?= base_url('index.php/admin/view_pemesanan/');?><?= $i->id_invoice;?>" class="btn btn-warning"><i class="fas fa-fw fa-search"></i> Cek</a>
                                 <!-- <a href="<?= base_url('index.php/admin/hapus_barang/');?><?= $i->id_invoce;?>" class="btn btn-danger"><i class="fas fa-fw fa-trash"></i> Hapus</a> -->
                             </td>
                         </tr>

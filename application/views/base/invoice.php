@@ -18,7 +18,7 @@
             <div class="page-content">
             	<div class="checkout">
 	                <div class="container">
-            			<form action="<?= base_url('index.php/home/action_checkout')?>" method="post" id="form_checkout">
+            			<!-- <form action="<?= base_url('index.php/home/action_checkout')?>" method="post" id="form_checkout"> -->
 		                	<div class="row">
 		                		<div class="col-lg-6">
 		                			<h2 class="checkout-title">Invoice Details</h2><!-- End .checkout-title -->
@@ -131,38 +131,50 @@
                                                         <a class="nav-link <?php if($checkout->status == 2){echo "active";}?>" id="tab-30-tab" data-toggle="tab" href="#tab-30" role="tab" aria-controls="tab-30" aria-selected="false">Dibayar</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link <?php if($checkout->status == 3){echo "active";}?>" id="tab-31-tab" data-toggle="tab" href="#tab-31" role="tab" aria-controls="tab-31" aria-selected="false">Diproses</a>
+                                                        <a class="nav-link <?php if($checkout->status == 3){echo "active";}?>" id="tab-31-tab" data-toggle="tab" href="#tab-31" role="tab" aria-controls="tab-31" aria-selected="false">Diproses/Dikirim</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link <?php if($checkout->status == 4){echo "active";}?>" id="tab-32-tab" data-toggle="tab" href="#tab-32" role="tab" aria-controls="tab-32" aria-selected="false">Dikirm</a>
+                                                        <a class="nav-link <?php if($checkout->status == 4){echo "active";}?>" id="tab-32-tab" data-toggle="tab" href="#tab-32" role="tab" aria-controls="tab-32" aria-selected="false">Selesai</a>
                                                     </li>
-                                                    <li class="nav-item">
+                                                    <!-- <li class="nav-item">
                                                         <a class="nav-link <?php if($checkout->status == 5){echo "active";}?>" id="tab-33-tab" data-toggle="tab" href="#tab-32" role="tab" aria-controls="tab-32" aria-selected="false">Selesai</a>
-                                                    </li>
+                                                    </li> -->
                                                 </ul>
                                                 <div class="tab-content tab-content-border" id="tab-content-8">
-                                                    <div class="tab-pane fade show active" id="tab-29" role="tabpanel" aria-labelledby="tab-29-tab">
+                                                    <div class="tab-pane fade <?php if($checkout->status == 1){echo "show active";}?>" id="tab-29" role="tabpanel" aria-labelledby="tab-29-tab">
                                                         <p>Pesanan sudah Dipesan, sedang menunggu pembayaran</p>
+                                                        <br>
+                                                        <h6>Upload Bukti Pembayaran</h6>
+                                                        <form action="<?= base_url('index.php/home/upload_bukti_pembayaran')?>" method="post" enctype="multipart/form-data">
+                                                            <input type="file" class="form-control" name="bukti_bayar">
+                                                            <input type="hidden" name="id_checkout" value="<?= $checkout->id_checkout?>">
+                                                            <input type="hidden" name="id_invoice" value="<?= $invoice->id_invoice?>">
+                                                            <input type="submit">
+                                                        </form>
                                                     </div><!-- .End .tab-pane -->
-                                                    <div class="tab-pane fade" id="tab-30" role="tabpanel" aria-labelledby="tab-30-tab">
-                                                        <p>Nobis perspiciatis natus cum, sint dolore earum rerum tempora aspernatur numquam velit tempore omnis, delectus repellat facere voluptatibus nemo non fugiat consequatur repellendus! Enim, commodi, veniam ipsa voluptates quis amet.</p>
+                                                    <div class="tab-pane fade <?php if($checkout->status == 2){echo "show active";}?>" id="tab-30" role="tabpanel" aria-labelledby="tab-30-tab">
+                                                        <p>Telah di bayar, menunggu di kirim oleh penjual</p>
+                                                        <h6>Bukti Pembayaran</h6>
+                                                        <img src="<?= base_url('assets_admin/img/bukti_bayar/'.$checkout->bukti_bayar)??''; ?>" alt="" width="300px">
                                                     </div><!-- .End .tab-pane -->
-                                                    <div class="tab-pane fade" id="tab-31" role="tabpanel" aria-labelledby="tab-31-tab">
-                                                        <p>Perspiciatis quis nobis, adipisci quae aspernatur, nulla suscipit eum. Dolorum, earum. Consectetur pariatur repellat distinctio atque alias excepturi aspernatur nisi accusamus sed molestias ipsa numquam eius, iusto, aliquid, quis aut.</p>
+                                                    <div class="tab-pane fade <?php if($checkout->status == 3){echo "show active";}?>" id="tab-31" role="tabpanel" aria-labelledby="tab-31-tab">
+                                                        <h6>Kode Resi</h6>
+                                                        <p><?= $checkout->kode_resi ?? ''?></p>
                                                     </div><!-- .End .tab-pane -->
-                                                    <div class="tab-pane fade" id="tab-32" role="tabpanel" aria-labelledby="tab-32-tab">
+                                                    <div class="tab-pane fade <?php if($checkout->status == 4){echo "show active";}?>" id="tab-32" role="tabpanel" aria-labelledby="tab-32-tab">
                                                         <p>Quis nobis, adipisci quae aspernatur, nulla suscipit eum. Dolorum, earum. Consectetur pariatur repellat distinctio atque alias excepturi aspernatur nisi accusamus sed molestias ipsa numquam eius, iusto, aliquid, quis aut.</p>
                                                     </div><!-- .End .tab-pane -->
-                                                    <div class="tab-pane fade" id="tab-32" role="tabpanel" aria-labelledby="tab-32-tab">
+                                                    <!-- <div class="tab-pane fade <?php if($checkout->status == 5){echo "show active";}?>" id="tab-32" role="tabpanel" aria-labelledby="tab-32-tab">
                                                         <p>Quis nobis, adipisci quae aspernatur, nulla suscipit eum. Dolorum, earum. Consectetur pariatur repellat distinctio atque alias excepturi aspernatur nisi accusamus sed molestias ipsa numquam eius, iusto, aliquid, quis aut.</p>
-                                                    </div><!-- .End .tab-pane -->
+                                                    </div> -->
+                                                    <!-- .End .tab-pane -->
                                                 </div><!-- End .tab-content -->
                                             </div><!-- End .tabs-vertical -->
                                         </div><!-- End .col-md-6 -->
 		                			</div><!-- End .summary -->
 		                		</aside><!-- End .col-lg-3 -->
 		                	</div><!-- End .row -->
-            			</form>
+            			<!-- </form> -->
 	                </div><!-- End .container -->
                 </div><!-- End .checkout -->
             </div><!-- End .page-content -->

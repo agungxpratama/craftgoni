@@ -282,8 +282,8 @@ class home extends CI_Controller {
 
 	public function pesanan()
 	{
-		$where = ['id_user' => $this->session->userdata('id_user')];
-		$data['pesanan'] = $this->M_All->view_where('invoice', $where)->result();
+		$where = ['invoice.id_user' => $this->session->userdata('id_user')];
+		$data['pesanan'] = $this->M_All->join_invoice_checkout($where)->result();
 		$this->auth();
 		$this->header();
 		$this->load->view('base/pesanan', $data);
@@ -292,6 +292,56 @@ class home extends CI_Controller {
 
 	public function lihat_pesanan($id)
 	{
-		# code...
+		$where = ['id_invoice' => $id];
+		$data['invoice'] = $this->M_All->view_where('invoice', $where)->row();
+		$where_c = ['id_checkout' => $data['invoice']->id_checkout];
+		$data['checkout'] = $this->M_All->view_where('checkout', $where_c)->row();
+		$where_barang = array('id_checkout' => $data['invoice']->id_checkout);
+		$data['barang'] = $this->M_All->join_invoice_bar($where_barang)->result();
+		$this->auth();
+		$this->header();
+		$data['cart'] = $this->M_All->join_cart_bar()->result();
+
+		// $data = array(
+
+		// );
+		$this->load->view('base/invoice', $data);
+		$this->footer();
+	}
+
+	public function upload_bukti_pembayaran()
+	{
+		$config['upload_path'] = './assets_admin/img/bukti_bayar/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['overwrite'] = true;
+		$config['max_size'] = 1024;
+		// $config['max_width'] = 1024;
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('bukti_bayar')) {
+            $this->session->set_flashdata('error', $this->upload->display_errors());
+			$data = array('error' => $this->upload->display_errors());
+            // $this->load->view('pengelolaan/gudang', $data);
+            redirect('home/lihat_pesanan/'.$this->input->post('id_invoice'));
+        }else{
+            $this->session->set_flashdata('success', 'Berhasil di Upload');
+			$data = array('success' => $this->upload->data('bukti_bayar'));
+			// $this->load->view('pengelolaan/gudang', $data);
+            $gambar = $this->upload->data('orig_name');
+            $data = array(
+                'bukti_bayar' => $gambar,
+                'status' => 2,
+			);
+			$where = ['id_checkout' => $this->input->post('id_checkout')];
+			$this->M_All->update('checkout', $where, $data);
+            // if ($this->M_All->insert('barang', $data) != true) {
+                // redirect('admin/barang');
+            // }else {
+                // redirect('admin/barang');
+            // }
+
+		}
+
+		// $this->M_All->update();
 	}
 }

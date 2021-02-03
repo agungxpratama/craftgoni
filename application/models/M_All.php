@@ -74,6 +74,16 @@ class M_All extends CI_Model{
         return $this->db->get();
     }
 
+    public function join_invoice_checkout($where)
+    {
+        $this->db->select('*');
+        $this->db->from('invoice');
+        $this->db->join('checkout', 'invoice.id_checkout = checkout.id_checkout');
+        $this->db->where($where);
+        // $this->db->join('user', 'cart.id_user = user.id_user');
+        return $this->db->get();
+    }
+
     function join_cart($from, $at)
     {
         $this->db->select('*');

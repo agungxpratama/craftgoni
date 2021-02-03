@@ -139,12 +139,32 @@ class admin extends CI_Controller {
     public function view_pemesanan($id)
     {
         $where = ['invoice.id_invoice' => $id];
+		$where_by = ['id_invoice' => $id];
+
         $data['invoice'] = $this->M_All->join_where_pemesanan($where)->row();
+		$where_c = ['id_checkout' => $data['invoice']->id_checkout];
+		$data['checkout'] = $this->M_All->view_where('checkout', $where_c)->row();
+		$where_barang = array('id_checkout' => $data['invoice']->id_checkout);
+		$data['barang'] = $this->M_All->join_invoice_bar($where_barang)->result();
+
         // var_dump($data);
         print_r($data);
         $this->header();
         $this->load->view('admin/view_pemesanan', $data);
         $this->footer();
+    }
+
+    public function proses_pesanan()
+    {
+        $id_pem = $this->input->post('id_invoice');
+        $where = ['id_checkout' => $this->input->post('id_checkout')];
+        $data = [
+            'kode_resi' => $this->input->post('kode_resi'),
+            'kurir' => $this->input->post('kurir'),
+            'status' => '3',
+        ];
+        $this->M_All->update('checkout', $where, $data);
+        redirect('admin/view_pemesanan/'.$id_pem);
     }
 
     public function list_akun()

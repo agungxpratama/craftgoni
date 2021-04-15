@@ -16,7 +16,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Pemesanan</h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" type="button" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus fa-sm text-white-50"></i> Tambah</a>
+        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" type="button" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus fa-sm text-white-50"></i> Tambah</a> -->
     </div>
 
     <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
@@ -107,9 +107,9 @@
                     </tr>
                     </tfoot> -->
                     <tbody>
-                    <?php 
+                    <?php
                     $no = 0;
-                    foreach ($invoice as $i): 
+                    foreach ($invoice as $i):
                         $no++;
                     ?>
                         <tr>

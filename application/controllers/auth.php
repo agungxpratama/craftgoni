@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Auth extends CI_Controller {
-    
+
 	public function index()
 	{
 		$this->load->view('auth/login');
@@ -10,12 +10,12 @@ class Auth extends CI_Controller {
 
     public function login_admin()
     {
-        
+
     }
 
     public function login_customer()
     {
-        
+
     }
 
     public function action_login()
@@ -74,7 +74,7 @@ class Auth extends CI_Controller {
         $username = $this->input->post('username');
         $email = $this->input->post('register_email');
         $password = $this->input->post('register_password');
-        
+
         $where = array(
             'username' => $username,
             // 'password' => $password,
@@ -102,7 +102,7 @@ class Auth extends CI_Controller {
 
         // print_r($data);
     }
-    
+
     function logout(){
 		$this->session->sess_destroy();
 		redirect(base_url('index.php/'));

@@ -17,45 +17,38 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form action="<?= base_url()?>index.php/admin/edit_barang/<?= $b->id_barang?>" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url()?>index.php/admin/update_barang/" method="post" enctype="multipart/form-data">
             <div class="modal-body">
                   <div class="form-group">
+                      <input type="hidden" name="id_barang" value="<?= $b->id_barang?>">
                       <label for="exampleFormControlInput1">Nama Barang</label>
                       <input type="text" class="form-control bg-light border-1 small" placeholder="Nama Barang" name="nama_barang" aria-label="namaBarang" aria-describedby="basic-addon2" value="<?= $b->nama_barang?>">
                   </div>
                   <div class="form-group">
-                          <label for="exampleFormControlInput1">Nama Barang</label>
-                          <input type="text" class="form-control bg-light border-1 small" placeholder="Masukan Nama Barang" name="nama_barang" aria-label="namaBArang" aria-describedby="basic-addon2">
-                      </div>
-                      <div class="form-group">
-                          <label for="exampleFormControlInput1">Gambar</label>
-                          <input type="file" class="form-control bg-light border-1 small" placeholder="Keterangan" name="gambar" aria-label="Gambar" aria-describedby="basic-addon2">
-                      </div>
-                      <div class="form-group">
-                          <label for="exampleFormControlInput1">Jenis Barang</label>
-                          <input type="text" class="form-control bg-light border-1 small" placeholder="Jenis Barang" name="jenis_barang" aria-label="jenisBarang" aria-describedby="basic-addon2">
-                      </div>
-                      <div class="form-group">
-                          <label for="exampleFormControlInput1">Detail Barang</label>
-                          <textarea class="form-control bg-light border-1 small" placeholder="Detail Barang" name="detail_barang" rows="3" cols="80" aria-label="detailBarang" aria-describedby="basic-addon2"></textarea>
-                          <!-- <input type="text" class="form-control bg-light border-1 small" placeholder="Kemasan" name="kemasan" aria-label="kemasan" aria-describedby="basic-addon2"> -->
-                      </div>
-                      <div class="form-group">
-                          <label for="exampleFormControlInput1">Harga Barang</label>
-                          <input type="text" class="form-control bg-light border-1 small" placeholder="Harga Barang" name="harga_barang" aria-label="hargaBarang" aria-describedby="basic-addon2">
-                      </div>
-                      <div class="form-group">
-                          <label for="exampleFormControlInput1">Kategori</label>
-                          <select class="form-control custom-select bg-light small" name="kategori">
-                            <option selected>Pilih Kategori Barang</option>
-                            <?php
-                            //foreach ($sumber as $s) {
-                                // code...
-                            ?>
-                            <option value="<?= '1'//$s->id_sumber; ?>"><?= 'data'//$s->nama_sumber ?></option>
-                            <?php //} ?>
-                          </select>
-                      </div>
+                      <label for="exampleFormControlInput1">Gambar</label>
+                      <input type="file" class="form-control bg-light border-1 small" placeholder="Keterangan" name="gambar" aria-label="Gambar" aria-describedby="basic-addon2">
+                  </div>
+                  <div class="form-group">
+                      <label for="exampleFormControlInput1">Kategori</label>
+                      <select class="form-control custom-select bg-light small" name="kategori">
+                        <option selected>Pilih Kategori Barang</option>
+                        <?php
+                        foreach ($kategori as $k) {
+                            // code...
+                        ?>
+                        <option value="<?= $k->id_kategori; ?>"><?= $k->nama_kategori ?></option>
+                        <?php } ?>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="exampleFormControlInput1">Detail Barang</label>
+                      <textarea class="form-control bg-light border-1 small" placeholder="Detail Barang" name="detail_barang" rows="3" cols="80" aria-label="detailBarang" aria-describedby="basic-addon2"><?= $b->detail_barang; ?></textarea>
+                      <!-- <input type="text" class="form-control bg-light border-1 small" placeholder="Kemasan" name="kemasan" aria-label="kemasan" aria-describedby="basic-addon2"> -->
+                  </div>
+                  <div class="form-group">
+                      <label for="exampleFormControlInput1">Harga Barang</label>
+                      <input type="text" class="form-control bg-light border-1 small" placeholder="Harga Barang" name="harga_barang" aria-label="hargaBarang" aria-describedby="basic-addon2" value="<?= $b->harga_barang; ?>">
+                  </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -80,16 +73,14 @@
                         <div class="col-4 border-left">
                             <h5 class="font-weight-bold">Kategori</h5>
                             <p class="text"><?= $b->kategori; ?></p>
-                            <h5 class="font-weight-bold">Jenis Barang</h5>
-                            <p class="text"><?= $b->jenis_barang; ?></p>
                             <h5 class="font-weight-bold">Harga Barang</h5>
                             <p class="text">Rp. <?= $b->harga_barang; ?></p>
                         </div>
                         <div class="col-4 border-left">
                             <h5 class="font-weight-bold">Stok</h5>
-                            <p class="text"><?= $b->stok; ?></p>
+                            <p class="text"><?= $stock; ?></p>
                             <h5 class="font-weight-bold">Stok Terjual</h5>
-                            <p class="text"><?= $b->stok_terjual; ?></p>
+                            <p class="text"><?= $stock_terjual; ?></p>
                         </div>
                         <div class="col-4 border-left">
                             <h5 class="font-weight-bold">Detail Barang</h5>

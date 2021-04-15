@@ -125,16 +125,16 @@
                                             <div class="tabs-vertical">
                                                 <ul class="nav nav-tabs flex-column" id="tabs-8" role="tablist">
                                                     <li class="nav-item">
-                                                        <a class="nav-link <?php if($checkout->status == 1){echo "active";}?>" id="tab-29-tab" data-toggle="tab" href="#tab-29" role="tab" aria-controls="tab-29" aria-selected="true">Dipesan</a>
+                                                        <a class="nav-link <?php if($checkout->status == 1){echo "active";}else{echo 'disabled';}?>" id="tab-29-tab" data-toggle="tab" href="#tab-29" role="tab" aria-controls="tab-29" aria-selected="true">Dipesan</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link <?php if($checkout->status == 2){echo "active";}?>" id="tab-30-tab" data-toggle="tab" href="#tab-30" role="tab" aria-controls="tab-30" aria-selected="false">Dibayar</a>
+                                                        <a class="nav-link <?php if($checkout->status == 2){echo "active";}else{echo 'disabled';}?>" id="tab-30-tab" data-toggle="tab" href="#tab-30" role="tab" aria-controls="tab-30" aria-selected="false">Dibayar</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link <?php if($checkout->status == 3){echo "active";}?>" id="tab-31-tab" data-toggle="tab" href="#tab-31" role="tab" aria-controls="tab-31" aria-selected="false">Diproses/Dikirim</a>
+                                                        <a class="nav-link <?php if($checkout->status == 3){echo "active";}else{echo 'disabled';}?>" id="tab-31-tab" data-toggle="tab" href="#tab-31" role="tab" aria-controls="tab-31" aria-selected="false">Diproses/Dikirim</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link <?php if($checkout->status == 4){echo "active";}?>" id="tab-32-tab" data-toggle="tab" href="#tab-32" role="tab" aria-controls="tab-32" aria-selected="false">Selesai</a>
+                                                        <a class="nav-link <?php if($checkout->status == 4){echo "active";}else{echo 'disabled';}?>" id="tab-32-tab" data-toggle="tab" href="#tab-32" role="tab" aria-controls="tab-32" aria-selected="false">Selesai</a>
                                                     </li>
                                                     <!-- <li class="nav-item">
                                                         <a class="nav-link <?php if($checkout->status == 5){echo "active";}?>" id="tab-33-tab" data-toggle="tab" href="#tab-32" role="tab" aria-controls="tab-32" aria-selected="false">Selesai</a>
@@ -160,9 +160,26 @@
                                                     <div class="tab-pane fade <?php if($checkout->status == 3){echo "show active";}?>" id="tab-31" role="tabpanel" aria-labelledby="tab-31-tab">
                                                         <h6>Kode Resi</h6>
                                                         <p><?= $checkout->kode_resi ?? ''?></p>
+                                                        <br>
+                                                        <h6>Kurir</h6>
+                                                        <p><?= $checkout->kurir ?? ''?></p>
                                                     </div><!-- .End .tab-pane -->
                                                     <div class="tab-pane fade <?php if($checkout->status == 4){echo "show active";}?>" id="tab-32" role="tabpanel" aria-labelledby="tab-32-tab">
-                                                        <p>Quis nobis, adipisci quae aspernatur, nulla suscipit eum. Dolorum, earum. Consectetur pariatur repellat distinctio atque alias excepturi aspernatur nisi accusamus sed molestias ipsa numquam eius, iusto, aliquid, quis aut.</p>
+                                                        <form action="post">
+                                                        <h6>Rating</h6>
+                                                        <select name="rating" id="rating" class="form-control">
+                                                            <option value="#" selected="selected">Pendapat anda</option>
+                                                            <option value="1">Sangat Jelek</option>
+                                                            <option value="2">Jelek</option>
+                                                            <option value="3">Cukup</option>
+                                                            <option value="4">Bagus</option>
+                                                            <option value="5">Sangat Bagus</option>
+                                                        </select>
+                                                        <h6>Review</h6>
+                                                        <textarea name="review" id="reply-message" cols="30" rows="4" class="form-control" required="" placeholder="Comment *"></textarea>
+                                                        <input type="submit">
+                                                        </form>
+                                                        <!-- <p>Quis nobis, adipisci quae aspernatur, nulla suscipit eum. Dolorum, earum. Consectetur pariatur repellat distinctio atque alias excepturi aspernatur nisi accusamus sed molestias ipsa numquam eius, iusto, aliquid, quis aut.</p> -->
                                                     </div><!-- .End .tab-pane -->
                                                     <!-- <div class="tab-pane fade <?php if($checkout->status == 5){echo "show active";}?>" id="tab-32" role="tabpanel" aria-labelledby="tab-32-tab">
                                                         <p>Quis nobis, adipisci quae aspernatur, nulla suscipit eum. Dolorum, earum. Consectetur pariatur repellat distinctio atque alias excepturi aspernatur nisi accusamus sed molestias ipsa numquam eius, iusto, aliquid, quis aut.</p>

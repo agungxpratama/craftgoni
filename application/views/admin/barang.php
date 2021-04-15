@@ -39,10 +39,6 @@
                           <input type="file" class="form-control bg-light border-1 small" placeholder="Keterangan" name="gambar" aria-label="Gambar" aria-describedby="basic-addon2">
                       </div>
                       <div class="form-group">
-                          <label for="exampleFormControlInput1">Jenis Barang</label>
-                          <input type="text" class="form-control bg-light border-1 small" placeholder="Jenis Barang" name="jenis_barang" aria-label="jenisBarang" aria-describedby="basic-addon2">
-                      </div>
-                      <div class="form-group">
                           <label for="exampleFormControlInput1">Detail Barang</label>
                           <textarea class="form-control bg-light border-1 small" placeholder="Detail Barang" name="detail_barang" rows="3" cols="80" aria-label="detailBarang" aria-describedby="basic-addon2"></textarea>
                           <!-- <input type="text" class="form-control bg-light border-1 small" placeholder="Kemasan" name="kemasan" aria-label="kemasan" aria-describedby="basic-addon2"> -->
@@ -88,7 +84,6 @@
                         <th>Gambar</th>
                         <th>Detail Barang</th>
                         <th>Kategori</th>
-                        <th>Jenis Barang</th>
                         <th>Harga Barang</th>
                         <th>Action</th>
                     </tr>
@@ -106,9 +101,9 @@
                     </tr>
                     </tfoot> -->
                     <tbody>
-                    <?php 
+                    <?php
                     $no = 0;
-                    foreach ($barang as $b): 
+                    foreach ($barang as $b):
                         $no++;
                     ?>
                         <tr>
@@ -117,7 +112,6 @@
                             <th><img src="<?= base_url('assets_admin/'.$b->gambar); ?>" width="100" height="100"></th>
                             <th><?= $b->detail_barang;?></th>
                             <th><?= $b->kategori;?></th>
-                            <th><?= $b->jenis_barang;?></th>
                             <th><?= $b->harga_barang;?></th>
                             <td>
                                 <a href="<?= base_url('index.php/admin/view_barang/');?><?= $b->id_barang;?>" class="btn btn-warning"><i class="fas fa-fw fa-search"></i> Cek</a>

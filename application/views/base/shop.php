@@ -244,21 +244,21 @@
                                             <a href="<?= base_url('index.php/home/product/')?>">
                                                 <img src="<?= base_url('assets_admin/'.$b->gambar); ?>" alt="Product image" class="product-image">
                                             </a>
-    
+
                                             <div class="product-action-vertical">
                                                 <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
                                             </div><!-- End .product-action -->
-    
+
                                             <div class="product-action action-icon-top">
                                                 <a href="<?= base_url('index.php/home/add_cart/').$b->id_barang?>" class="btn-product btn-cart"><span>add to cart</span></a>
                                                 <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
                                                 <a href="#" class="btn-product btn-compare" title="Compare"><span>compare</span></a>
                                             </div><!-- End .product-action -->
                                         </figure><!-- End .product-media -->
-    
+
                                         <div class="product-body">
                                             <div class="product-cat">
-                                                <a href="#"><?= $b->jenis_barang?></a>
+                                                <a href="#"><?= $b->kategori?></a>
                                             </div><!-- End .product-cat -->
                                             <h3 class="product-title"><a href="product.html"><?= $b->nama_barang?></a></h3><!-- End .product-title -->
                                             <div class="product-price">
@@ -273,7 +273,7 @@
                                         </div><!-- End .product-body -->
                                     </div><!-- End .product -->
                                 </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
-                                
+
                             <?php endforeach;?>
                         </div><!-- End .row -->
 

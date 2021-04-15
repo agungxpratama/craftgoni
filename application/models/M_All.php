@@ -126,9 +126,41 @@ class M_All extends CI_Model{
         return $this->db->get();
     }
 
+    public function join_barang_stock()
+    {
+        $this->db->select('*');
+        $this->db->from('barang');
+        $this->db->join('stock', 'stock.id_barang = barang.id_barang', 'left');
+        return $this->db->get();
+    }
+
+    public function join_barang_stock_where($where)
+    {
+        $this->db->select('*');
+        $this->db->from('barang');
+        $this->db->join('stock', 'stock.id_barang = barang.id_barang');
+        $this->db->where($where);
+        return $this->db->get();
+    }
+
     function count($where)
     {
         return $this->db->count_all_results($where);
+    }
+
+    function count_like($where, $like)
+    {
+        $this->db->like('id_barang', $like);
+        $this->db->from($where);
+        return $this->db->count_all_results();
+    }
+
+    function count_like_stat($where, $like)
+    {
+        $this->db->like('id_barang', $like);
+        $this->db->like('status', '1');
+        $this->db->from($where);
+        return $this->db->count_all_results();
     }
 
     function sum($kind, $table)

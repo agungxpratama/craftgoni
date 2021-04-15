@@ -148,17 +148,17 @@
 							    			<label for="singin-email-2">Full Name *</label>
 							    			<input type="text" class="form-control" id="singin-email-2" name="full_name" required>
                                         </div><!-- End .form-group -->
-                                        
+
                                         <div class="form-group">
 							    			<label for="register-email-2">Your email address *</label>
 							    			<input type="email" class="form-control" id="register-email-2" name="register_email" required>
                                         </div><!-- End .form-group -->
-                                        
+
                                         <div class="form-group">
 							    			<label for="singin-email-2">Username *</label>
 							    			<input type="text" class="form-control" id="singin-email-2" name="username" required>
                                         </div><!-- End .form-group -->
-                                        
+
 							    		<div class="form-group">
 							    			<label for="register-password-2">Password *</label>
 							    			<input type="password" class="form-control" id="register-password-2" name="register_password" required>
@@ -224,10 +224,7 @@
 	            				<ul class="widget-list">
 	            					<li><a href="#">Payment Methods</a></li>
 	            					<li><a href="#">Money-back guarantee!</a></li>
-	            					<li><a href="#">Returns</a></li>
-	            					<li><a href="#">Shipping</a></li>
-	            					<li><a href="#">Terms and conditions</a></li>
-	            					<li><a href="#">Privacy Policy</a></li>
+
 	            				</ul><!-- End .widget-list -->
 	            			</div><!-- End .widget -->
 	            		</div><!-- End .col-sm-6 col-lg-3 -->
@@ -273,7 +270,7 @@
                 <input type="search" class="form-control" name="mobile-search" id="mobile-search" placeholder="Search in..." required>
                 <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
             </form>
-            
+
             <nav class="mobile-nav">
                 <ul class="mobile-menu">
                     <li class="active">

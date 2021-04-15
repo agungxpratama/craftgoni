@@ -69,7 +69,17 @@
                                         <div class="modal-body">
                                           <div class="form-group">
                                               <label for="FormControl">Nama</label>
-                                              <p id="FormControl"><?= $u->nama_lengkap;?></p>
+                                              <p id="FormControl"><?= $u->nama_user;?></p>
+                                              <!-- <input type="text" class="form-control bg-light border-1 small" placeholder="Masukan Nomor Resi Pengiriman" name="resi" aria-label="noREsi" aria-describedby="basic-addon2"> -->
+                                          </div>
+                                          <div class="form-group">
+                                              <label for="FormControl">Alamat</label>
+                                              <p id="FormControl"><?= $u->alamat;?></p>
+                                              <!-- <input type="text" class="form-control bg-light border-1 small" placeholder="Masukan Nomor Resi Pengiriman" name="resi" aria-label="noREsi" aria-describedby="basic-addon2"> -->
+                                          </div>
+                                          <div class="form-group">
+                                              <label for="FormControl">E-Mail</label>
+                                              <p id="FormControl"><?= $u->email;?></p>
                                               <!-- <input type="text" class="form-control bg-light border-1 small" placeholder="Masukan Nomor Resi Pengiriman" name="resi" aria-label="noREsi" aria-describedby="basic-addon2"> -->
                                           </div>
                                         </div>

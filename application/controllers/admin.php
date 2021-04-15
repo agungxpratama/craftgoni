@@ -15,12 +15,12 @@ class admin extends CI_Controller {
     {
         $this->load->view('admin/base/header');
     }
-     
+
     public function footer()
     {
-        $this->load->view('admin/base/footer');        
+        $this->load->view('admin/base/footer');
     }
-    
+
 	public function index()
 	{
         $this->header();
@@ -31,11 +31,24 @@ class admin extends CI_Controller {
     public function update_stock($id)
     {
         $where = ['id_barang' => $id];
-        $data = ['stok' => $this->input->post('stok'),];
-        $this->M_All->update('barang', $where, $data);
+        $this->input->post('stok');
+        $data = [
+            'id_barang' => $id,
+            'status' => 0,
+            'tanggal' => date('Y-m-d H:i:s'),
+        ];
+        for ($i=0; $i < $this->input->post('stok'); $i++) {
+            $this->M_All->insert('stock', $data);
+        }
+        // $this->M_All->update('barang', $where, $data);
+        // if ($this->M_All->insert('stock', $data) != true) {
+        //     redirect('admin/barang');
+        // }else {
+        //     redirect('admin/barang');
+        // }
 		redirect('admin/view_barang/'.$id);
     }
-    
+
     public function barang()
     {
         $data['kategori'] = $this->M_All->get('kategori')->result();
@@ -81,13 +94,35 @@ class admin extends CI_Controller {
 		}
     }
 
+    public function tambah_stok()
+    {
+        // code...
+    }
+
     public function view_barang($id)
     {
+        $data['kategori'] = $this->M_All->get('kategori')->result();
         $where = array('id_barang' => $id);
         $data['barang'] = $this->M_All->view_where('barang', $where)->result();
+        $data['stock'] = $this->M_All->count_like('stock', $id);
+        $data['stock_terjual'] = $this->M_All->count_like_stat('stock', $id);
+        // print_r($data);
         $this->header();
         $this->load->view('admin/detail_barang', $data);
         $this->footer();
+    }
+
+    public function update_barang()
+    {
+        $where = array('id_barang' => $this->input->post('id_barang'), );
+        $data = [
+            'nama_barang' => $this->input->post('nama_barang'),
+            'detail_barang' => $this->input->post('detail_barang'),
+            'harga_barang' => $this->input->post('harga_barang'),
+        ];
+        $update = $this->M_All->update('barang', $where, $data);
+        redirect('admin/view_barang/'.$where['id_barang']);
+
     }
 
     public function hapus_barang($id)
@@ -117,11 +152,28 @@ class admin extends CI_Controller {
             redirect('admin/kategori');
         }
     }
-    
+
+    public function view_kategori($id)
+    {
+        $data['kategori'] = $this->M_All->get('kategori')->result();
+        $where = array('kategori' => $id);
+        $data['barang'] = $this->M_All->view_where('barang', $where)->result();
+        $this->header();
+        $this->load->view('admin/barang', $data);
+        $this->footer();
+    }
+
+    public function hapus_kategori($id)
+    {
+        $where = array('id_kategori' => $id);
+		$this->M_All->delete($where,'kategori');
+		redirect('admin/kategori');
+    }
+
     public function data_user(){
         $where = array('role' => 'customer');
         $data['user'] = $this->M_All->view_where('user', $where)->result();
-        // print_r($data);
+        print_r($data);
         $this->header();
         // print_r($data);
         $this->load->view('admin/data_user', $data);
@@ -148,10 +200,15 @@ class admin extends CI_Controller {
 		$data['barang'] = $this->M_All->join_invoice_bar($where_barang)->result();
 
         // var_dump($data);
-        print_r($data);
+        // print_r($data);
         $this->header();
         $this->load->view('admin/view_pemesanan', $data);
         $this->footer();
+    }
+
+    public function update_admin()
+    {
+
     }
 
     public function proses_pesanan()
@@ -167,11 +224,11 @@ class admin extends CI_Controller {
         redirect('admin/view_pemesanan/'.$id_pem);
     }
 
-    public function list_akun()
+    public function profile()
     {
-        $where = ['role' => 'customer'];
+        $where = ['role' => 'admin'];
         $data['user'] = $this->M_All->view_where('user', $where)->result();
-        print_r($data);
+        // print_r($data);
         $this->header();
         $this->load->view('admin/list_user', $data);
         $this->footer();

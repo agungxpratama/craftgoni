@@ -77,9 +77,9 @@
                     </tr>
                     </tfoot> -->
                     <tbody>
-                    <?php 
+                    <?php
                     $no = 0;
-                    foreach ($kategori as $k): 
+                    foreach ($kategori as $k):
                         $no++;
                     ?>
                         <tr>
@@ -88,8 +88,8 @@
                             <th><?= $k->keterangan;?></th>
                             <!-- <th><img src="<?= base_url('assets_admin/'); ?>" width="100" height="100"></th> -->
                             <td>
-                                <a href="<?= base_url('index.php/admin/view_barang/');?><?= $k->id_kategori;?>" class="btn btn-warning"><i class="fas fa-fw fa-search"></i> Cek</a>
-                                <a href="<?= base_url('index.php/admin/hapus_barang/');?><?= $k->id_kategori;?>" class="btn btn-danger"><i class="fas fa-fw fa-trash"></i> Hapus</a>
+                                <a href="<?= base_url('index.php/admin/view_kategori/');?><?= $k->id_kategori;?>" class="btn btn-warning"><i class="fas fa-fw fa-search"></i> Cek</a>
+                                <a href="<?= base_url('index.php/admin/hapus_kategori/');?><?= $k->id_kategori;?>" class="btn btn-danger"><i class="fas fa-fw fa-trash"></i> Hapus</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

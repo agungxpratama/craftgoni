@@ -29,6 +29,7 @@ class admin extends CI_Controller {
         $data['pesanan'] = $this->M_All->count('checkout');
         $data['pesanan_selesai'] = $this->M_All->count_like_finish('checkout', '4');
         $data['task'] = $data['pesanan_selesai']/$data['pesanan']*100;
+        $data['stock_terjual'] = $this->M_All->count_like_stock('stock', '1');
 
         $this->load->view('admin/dashboard', $data);
         $this->footer();
@@ -85,10 +86,9 @@ class admin extends CI_Controller {
             $gambar = $this->upload->data('orig_name');
             $data = array(
                 'nama_barang' => $this->input->post('nama_barang',true),
-                'gambar' => $gambar,
+                'gambar' => 'img/barang/'.$gambar,
                 'detail_barang' => $this->input->post('detail_barang',true),
                 'kategori' => $this->input->post('kategori',true),
-                'jenis_barang' => $this->input->post('jenis_barang',true),
                 'harga_barang' => $this->input->post('harga_barang',true),
             );
             if ($this->M_All->insert('barang', $data) != true) {

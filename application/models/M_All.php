@@ -155,6 +155,20 @@ class M_All extends CI_Model{
         return $this->db->count_all_results();
     }
 
+    function count_like_finish($where, $like)
+    {
+        $this->db->like('status', $like);
+        $this->db->from($where);
+        return $this->db->count_all_results();
+    }
+
+    function count_like_stock($where, $like)
+    {
+        $this->db->like('status', $like);
+        $this->db->from($where);
+        return $this->db->count_all_results();
+    }
+
     function count_like_stat($where, $like)
     {
         $this->db->like('id_barang', $like);

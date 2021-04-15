@@ -21,7 +21,7 @@
 							<tr>
 								<th>Product</th>
 								<th>Price</th>
-								<th>Status</th>
+                                <th>Status</th>
 								<th></th>
 								<th></th>
 							</tr>

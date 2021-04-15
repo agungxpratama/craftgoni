@@ -94,7 +94,7 @@
                         </button>
 
                         <a href="<?= base_url('index.php/home'); ?>" class="logo">
-                            <img src="assets/images/logo.png" alt="Molla Logo" width="105" height="25">
+                            <img src="assets/assets/images/logo.png" alt="Molla Logo" width="105" height="25">
                         </a>
 
                         <nav class="main-nav">

@@ -24,7 +24,13 @@ class admin extends CI_Controller {
 	public function index()
 	{
         $this->header();
-        $this->load->view('admin/dashboard');
+        // $data['stok'] = $this->M_All->get('barang')->result();
+        $data['stock'] = $this->M_All->count_like_stock('stock', '0');
+        $data['pesanan'] = $this->M_All->count('checkout');
+        $data['pesanan_selesai'] = $this->M_All->count_like_finish('checkout', '4');
+        $data['task'] = $data['pesanan_selesai']/$data['pesanan']*100;
+
+        $this->load->view('admin/dashboard', $data);
         $this->footer();
     }
 

@@ -70,7 +70,7 @@
                                 <div class="col-6 col-md-4 col-lg-4 col-xl-3">
                                     <div class="product">
                                         <figure class="product-media">
-                                            <a href="<?= base_url('index.php/home/product/')?>">
+                                            <a href="<?= base_url('index.php/home/product/'.$b->id_barang)?>">
                                                 <img src="<?= base_url('assets_admin/'.$b->gambar); ?>" alt="Product image" class="product-image">
                                             </a>
 
